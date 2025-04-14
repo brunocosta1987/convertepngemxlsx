@@ -1,5 +1,5 @@
 
-# Extrator de Dados de PNG - MPRJ
+# Extrator de Dados de PNG
 
 Este é um aplicativo em Streamlit que permite extrair dados de imagens PNG com base em campos como:
 

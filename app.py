@@ -6,7 +6,7 @@ import pandas as pd
 import io
 import re
 
-st.title("📄 Extrator de Dados de PNG - MPRJ")
+st.title("📄 Extrator de Dados de PNG")
 
 uploaded_files = st.file_uploader("Envie as imagens .png", type="png", accept_multiple_files=True)
 

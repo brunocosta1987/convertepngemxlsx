@@ -6,14 +6,19 @@ import pandas as pd
 import io
 import re
 
-st.title("📄 Extrator de Dados de PNG")
+st.title("📄 Extrator de Dados de PNG - MPRJ")
+
+st.markdown("Você pode **enviar várias imagens .png ao mesmo tempo** para extrair os dados de No. Serviço, KM Final e Total/Devido R$.")
 
 uploaded_files = st.file_uploader("Envie as imagens .png", type="png", accept_multiple_files=True)
 
 dados_extraidos = []
 
 if uploaded_files:
-    for uploaded_file in uploaded_files:
+    progress_bar = st.progress(0)
+    total_files = len(uploaded_files)
+
+    for i, uploaded_file in enumerate(uploaded_files):
         image = Image.open(uploaded_file)
 
         # Extração de texto com Tesseract
@@ -31,7 +36,10 @@ if uploaded_files:
             "Total/Devido R$": total_devido.group(1) if total_devido else "",
         })
 
+        progress_bar.progress((i + 1) / total_files)
+
     df = pd.DataFrame(dados_extraidos)
+    st.success("✅ Extração concluída com sucesso!")
     st.dataframe(df)
 
     # Gerar Excel para download
